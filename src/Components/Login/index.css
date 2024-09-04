@@ -1,0 +1,53 @@
+*{
+ margin: 0px;
+ padding: 0px;
+}
+
+.bg-image{
+    background-image: url("https://res.cloudinary.com/ds79zalba/image/upload/v1725434879/Background_xvvurf.png");
+    height: 100vh;
+    width: 1366px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.formEl {
+    border-radius: 16px;
+    height: 50%;
+    width: 501px;
+    padding: 64px;
+    background-color: white; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputdiv{
+  width: 383px;
+  height: 30px;
+  border-radius: 8px;
+  box-shadow: 10px;
+  padding: 12px;
+  border: 2px solid #64748B;
+  margin: 10px;
+}
+
+.inputEl { 
+    border: 0px;
+    outline: none;
+    margin: 8px;
+}
+
+.buttonEl{
+    width:383px;
+    height: 30px;
+    padding: 20px;
+    text-align: center;
+    background-color: #B3B3B3;
+    color: white;
+    border-radius: 8px;
+    margin: 8px;
+}
