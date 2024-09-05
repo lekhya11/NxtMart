@@ -1,0 +1,42 @@
+.icons-con{
+    margin: 8px;
+}
+
+.para-con{
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 300;
+    margin: 2px;
+    text-align: center;
+    
+}
+
+.para-con1{
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 300;
+    margin: 2px;
+    text-align: center;
+    
+}
+
+.main-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: #003F00;
+    padding: 10px;
+    color: white;
+    width: 1,366px;
+    height: 200px;
+    /* padding: 48px 80px 48px 80px; */
+
+}
+
+.icon {
+    margin: 20px;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}

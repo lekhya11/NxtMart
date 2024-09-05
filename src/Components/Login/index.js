@@ -1,4 +1,5 @@
 import {Component} from "react"
+import Cookies from "js-cookie"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import "./index.css"
@@ -7,7 +8,19 @@ class Login extends Component {
     state = {
         username: "",
         password: "",
+        errorMsg: "",
         isChecked: false
+    }
+
+    OnSuccessView = (jwtToken) => {
+        const {history} = this.props 
+        history.replace("/")
+
+        Cookies.set("JwtToken", jwtToken, {expires:30})
+    }
+
+    OnFailureView = (errorMsg) => {
+      this.setState({errorMsg: errorMsg})
     }
 
     OnSubmitForm = async (event) => {
@@ -15,13 +28,21 @@ class Login extends Component {
         const {username, password} = this.state
         const userDetails = {username, password}
         const url = "https://apis.ccbp.in/login"
-        const objects = {
+        const options = {
             method: "POST",
-            data : JSON.stringify(userDetails)
+            body : JSON.stringify(userDetails) //given data instead of body
         }
-        const response = await fetch(url,objects)
-        const data = await response.JSON()
+        const response = await fetch(url,options)
+        console.log(response)
+        const data = await response.json() //give JSON instead of json
         console.log(data)
+
+        if (response.ok === true) {
+            this.OnSuccessView(data.jwt_token)
+            
+        } else {
+            this.OnFailureView(data.error_msg)
+        }
 
     }
 
@@ -38,7 +59,7 @@ class Login extends Component {
     }
 
     render () {
-        const {username , password, isChecked} = this.state
+        const {username , password, isChecked,errorMsg} = this.state
         const type = isChecked ? "text" : "password"
         console.log(username)
     return (
@@ -59,7 +80,11 @@ class Login extends Component {
            </div>
            <input type="checkbox" id="checkbox" onClick={this.OnClickCheckbox}/> 
            <label htmlFor="checkbox"> Show Password </label>
-           <button  type="submit" className="buttonEl" > Login </button>
+            { username !== "" && password !=="" ? 
+             <button  type="submit" className="buttonEl"> Login </button> : 
+             <button  type="submit" className="buttonEl" disabled> Login </button>
+            }
+             {errorMsg !== "" && <p>{errorMsg}</p>}
            </div>
        </form>
     </div>
